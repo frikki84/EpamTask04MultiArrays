@@ -7,9 +7,11 @@ import java.util.Arrays;
 public class MultiArraysPracticeUnit06 {
 
 	public static void main(String[] args) {
+		
 		ArrayList<String> mainList = createMagicSquare(3);
 		
 		System.out.println("Количество решений: " + mainList.size());
+		
 		for (String item : mainList) {
 			System.out.println(item);
 		}
@@ -18,34 +20,36 @@ public class MultiArraysPracticeUnit06 {
 
 	public static ArrayList<String> createMagicSquare(int number) {
 
-		Integer[] magicSquare = createArrayForMagicsquare(number);
-
+		int[] magicSquare = createArrayForMagicsquare(number);
+		
 		int maxvalue = (int) Math.pow(number, 2);
 
 		int lineSum = (number * (maxvalue + 1)) / 2;
 
 		ArrayList<String> mainList = new ArrayList<>();
+		
 
 		while (arrayElementionsPermutation(magicSquare)) {
+			
 
 			if (calcAllRowSum(number, magicSquare, lineSum) && calcAllColomnSum(number, magicSquare, lineSum)
 					&& calcAllDiagonalSum(number, magicSquare, lineSum)) {
-
+				
 				String decicion = Arrays.toString(magicSquare);
+				
 				mainList.add(decicion);
-
+				
 			}
-
 		}
-
+	
 		return mainList;
 
 	}
 
-	public static Integer[] createArrayForMagicsquare(int number) {
+	public static int[] createArrayForMagicsquare(int number) {
 		int maxValue = (int) Math.pow(number, 2);
 
-		Integer[] resultArray = new Integer[maxValue];
+		int[] resultArray = new int[maxValue];
 
 		for (int i = 0; i < resultArray.length; i++) {
 			resultArray[i] = i + 1;
@@ -55,7 +59,7 @@ public class MultiArraysPracticeUnit06 {
 
 	}
 
-	public static boolean arrayElementionsPermutation(Integer[] array) {
+	public static boolean arrayElementionsPermutation(int[] array) {
 
 		int length = array.length;
 
@@ -85,13 +89,13 @@ public class MultiArraysPracticeUnit06 {
 		return true;
 	}
 
-	public static void swapElements(Integer[] array, int index, int nextIndex) {
+	public static void swapElements(int[] array, int index, int nextIndex) {
 		int middleNumber = array[index];
 		array[index] = array[nextIndex];
 		array[nextIndex] = middleNumber;
 	}
 
-	public static boolean calcAllRowSum(int n, Integer[] array, int lineSum) {
+	public static boolean calcAllRowSum(int n, int[] array, int lineSum) {
 		boolean result = true;
 		for (int i = 1; i <= n; i++) {
 			if (calcOneRowSum(n, array, i) != lineSum) {
@@ -103,7 +107,7 @@ public class MultiArraysPracticeUnit06 {
 		return result;
 	}
 
-	public static int calcOneRowSum(int n, Integer[] array, int lineNumber) {
+	public static int calcOneRowSum(int n, int[] array, int lineNumber) {
 		int sum = 0;
 		int firstIndex = (lineNumber - 1) * n;
 		int lastIndex = lineNumber * n;
@@ -115,7 +119,7 @@ public class MultiArraysPracticeUnit06 {
 		return sum;
 	}
 
-	public static boolean calcAllColomnSum(int n, Integer[] array, int lineSum) {
+	public static boolean calcAllColomnSum(int n, int[] array, int lineSum) {
 		boolean result = true;
 		for (int i = 1; i <= n; i++) {
 			if (calcOneColomnSum(n, array, i) != lineSum) {
@@ -127,7 +131,7 @@ public class MultiArraysPracticeUnit06 {
 		return result;
 	}
 
-	public static int calcOneColomnSum(int n, Integer[] array, int lineNumber) {
+	public static int calcOneColomnSum(int n, int[] array, int lineNumber) {
 		int sum = 0;
 		int firstIndex = lineNumber - 1;
 		int lastIndex = firstIndex + n * (n - 1);
@@ -139,7 +143,7 @@ public class MultiArraysPracticeUnit06 {
 		return sum;
 	}
 
-	public static boolean calcAllDiagonalSum(int n, Integer[] array, int lineSum) {
+	public static boolean calcAllDiagonalSum(int n, int[] array, int lineSum) {
 		boolean result = true;
 		if (calcLeftDiagonalSum(n, array) != lineSum && calcRightDiagonalSum(n, array) != lineSum) {
 			result = false;
@@ -149,7 +153,7 @@ public class MultiArraysPracticeUnit06 {
 		return result;
 	}
 
-	public static int calcLeftDiagonalSum(int n, Integer[] array) {
+	public static int calcLeftDiagonalSum(int n, int[] array) {
 		int sum = 0;
 		int firstIndex = 0;
 		int lastIndex = array.length - 1;
@@ -161,7 +165,7 @@ public class MultiArraysPracticeUnit06 {
 		return sum;
 	}
 
-	public static int calcRightDiagonalSum(int n, Integer[] array) {
+	public static int calcRightDiagonalSum(int n, int[] array) {
 		int sum = n - 1;
 		int firstIndex = 0;
 		int lastIndex = array.length - n - 1;
